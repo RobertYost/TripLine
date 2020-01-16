@@ -21,8 +21,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+
 import { LoginComponent } from './components/login/login.component';
 import { TripComponent } from './components/trip/trip/trip.component';
 
@@ -44,7 +49,11 @@ import { TripComponent } from './components/trip/trip/trip.component';
     FlexLayoutModule,
     MatMenuModule,
     MatAutocompleteModule,
-    MatSnackBarModule],
+    MatSnackBarModule,
+    MatStepperModule,
+    MatCheckboxModule,
+    MatProgressBarModule
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

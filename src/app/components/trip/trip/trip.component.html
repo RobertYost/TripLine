@@ -1,1 +1,64 @@
-<p>trip works!</p>
+<div class="wrapper" fxLayout="row">
+    <div fxFlex.gt-sm="40" fxFlex="60" fxFlexOffset.gt-sm="30" fxFlexOffset="20" fxLayout="column">
+        <h2 fxFlex="20" fxFlexOffset="10" fxLayoutAlign="center">Welcome</h2>
+        <mat-card fxFlexOffset="5">
+            <mat-vertical-stepper #stepper>
+                <mat-step [stepControl]="form">
+                    <form [formGroup]="form">
+                        <ng-template matStepLabel>Twitter Username</ng-template>
+                        <mat-form-field>
+                            <input matInput placeholder="Twitter Username" formControlName="twitterUsername" required>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="form">
+                    <form [formGroup]="form">
+                        <ng-template matStepLabel>Personal Info</ng-template>
+                        <mat-form-field>
+                            <input matInput placeholder="Email" formControlName="email" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
+                        </mat-form-field>
+                        <mat-checkbox labelPosition="before">Would you like to recieve promotional emails</mat-checkbox>
+                        <div>
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="form">
+                    <form [formGroup]="form">
+                        <ng-template matStepLabel>Preferences</ng-template>
+                        <mat-list role="list">
+                            <mat-list-item>
+                                <mat-form-field>
+                                    <input matInput type="number" placeholder="Max Trip Price" formControlName="maxPrice" required>
+                                </mat-form-field>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-checkbox labelPosition="before">I have a passport</mat-checkbox>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-checkbox labelPosition="before">I am comfortable flying</mat-checkbox>
+                            </mat-list-item>
+                        </mat-list>
+                        <div>
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                </mat-step>
+            </mat-vertical-stepper>
+        </mat-card>
+    </div>
+    <mat-card>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+    </mat-card>
+
+</div>
