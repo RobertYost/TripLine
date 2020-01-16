@@ -1,43 +1,41 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { LoginComponent } from "./components/login/login.component";
-import { AuthGuard } from "./helpers/auth.guard";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './helpers/auth.guard';
+import { AppComponent } from './app.component';
+import { TripComponent } from './components/trip/trip/trip.component';
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "/main/map",
-    pathMatch: "full"
+    path: '',
+    redirectTo: '/main/trips',
+    pathMatch: 'full'
   },
   {
-    path: "main",
-    component: LayoutComponent,
+    path: 'main',
+    component: AppComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: "map",
-        component: MapComponent,
+        path: 'trips',
+        component: TripComponent,
         canActivate: [AuthGuard]
       },
-      {
-        path: "account",
-        component: AccountComponent,
-        canActivate: [AuthGuard]
-      }
+      // {
+      //   path: "account",
+      //   component: AccountComponent,
+      //   canActivate: [AuthGuard]
+      // }
     ]
   },
   {
-    path: "login",
+    path: 'login',
     component: LoginComponent
   },
   {
-    path: "account-setup",
-    component: AccountSetupComponent
-  },
-  {
-    path: "**",
-    redirectTo: "/main/map",
-    pathMatch: "full"
+    path: '**',
+    redirectTo: '/main/trips',
+    pathMatch: 'full'
   }
 ];
 

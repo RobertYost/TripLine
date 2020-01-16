@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { Router } from '@angular/router';
 import { User } from './models/user';
@@ -8,14 +8,18 @@ import { User } from './models/user';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'tripline';
   currentUser: User;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
 
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-
+  }
+  ngOnInit() {
+    this.authenticationService.currentUser.subscribe(x => {
+      console.log(x);
+      this.currentUser = x;
+    });
   }
 
   logout() {

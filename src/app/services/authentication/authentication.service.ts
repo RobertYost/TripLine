@@ -1,19 +1,19 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { environment } from "../../../environments/environment";
-import { User } from "../../models/user";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { User } from '../../models/user';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    if (localStorage.getItem("currentUser")) {
+    if (localStorage.getItem('currentUser')) {
       this.currentUserSubject = new BehaviorSubject<User>(
-        User.fromJSON(JSON.parse(localStorage.getItem("currentUser")))
+        User.fromJSON(JSON.parse(localStorage.getItem('currentUser')))
       );
     } else {
       this.currentUserSubject = new BehaviorSubject<User>(undefined);
@@ -59,9 +59,11 @@ export class AuthenticationService {
   }
 
   propagateUserChange(json: object): User {
+    console.log(json);
     const user = User.fromJSON(json);
+    console.log(user);
     // store user details and jwt token in local storage to keep user logged in between page refreshes
-    localStorage.setItem("currentUser", JSON.stringify(user));
+    localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
     return user;
   }
@@ -69,7 +71,7 @@ export class AuthenticationService {
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error("An error occurred:", error.error.message);
+      console.error('An error occurred:', error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
@@ -78,12 +80,12 @@ export class AuthenticationService {
       );
     }
     // return an observable with a user-facing error message
-    return throwError("Something bad happened; please try again later.");
+    return throwError('Something bad happened; please try again later.');
   }
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 }

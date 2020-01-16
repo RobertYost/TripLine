@@ -23,9 +23,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoginComponent } from './components/login/login.component';
+import { TripComponent } from './components/trip/trip/trip.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent, TripComponent],
   imports: [BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
