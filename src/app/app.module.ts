@@ -2,11 +2,11 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { JwtInterceptor } from "src/helpers/jwt.interceptor";
-import { ErrorInterceptor } from "./../helpers/error.interceptor";
-import { fakeBackendProvider } from "./../helpers/fake-backend";
+import { JwtInterceptor } from "src/app/helpers/jwt.interceptor";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { ErrorInterceptor } from "./helpers/error.interceptor";
+import { fakeBackendProvider } from "./helpers/fake-backend";
 
 @NgModule({
   declarations: [AppComponent],

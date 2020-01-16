@@ -1,0 +1,49 @@
+<div class="wrapper" fxLayout="row">
+    <div fxFlex.gt-sm="40" fxFlex="60" fxFlexOffset.gt-sm="30" fxFlexOffset="20" fxLayout="column">
+        <h2 fxFlex="20" fxFlexOffset="10" fxLayoutAlign="center">Welcome</h2>
+        <mat-card fxFlexOffset="5">
+            <mat-card-title>Login</mat-card-title>
+            <mat-card-content>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <p>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Email" formControlName="email">
+                            <mat-error *ngIf="f.email.errors">Email Required</mat-error>
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field>
+                            <input [type]="hidePassword ? 'password' : 'text'" matInput placeholder="Password"
+                                formControlName="password">
+                            <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hidePassword">
+                                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="f.password.errors && f.password.errors.required">Password Required
+                            </mat-error>
+                            <mat-error *ngIf="f.password.errors && !f.password.errors.minLength">Password must be at
+                                least 8 characters</mat-error>
+                        </mat-form-field>
+                    </p>
+
+                    <p *ngIf="error" class="error">
+                        {{ error }}
+                        Email: firstname@transity.io<br />
+                        Password: testtest
+                    </p>
+                    <div fxLayout="row" fxLayoutAlign="space-between">
+                        <a fxFlexAlign="start" href="/account-setup" type="submit" class="btn btn-outline-secondary">
+                            Create Account
+                        </a>
+                        <button fxFlexAlign="end" class="btn btn-primary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Login
+                        </button>
+                    </div>
+
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
