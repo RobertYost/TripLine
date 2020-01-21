@@ -1,125 +1,131 @@
 <div class="wrapper" fxLayout="row">
-    <div *ngIf="!showTrips" fxFlex.gt-sm="40" fxFlex="60" fxFlexOffset.gt-sm="30" fxFlexOffset="20" fxLayout="column">
-        <h2 fxFlex="20" fxFlexOffset="10" fxLayoutAlign="center">Welcome</h2>
-        <mat-card fxFlexOffset="5">
-            <mat-vertical-stepper #stepper>
-                <mat-step [stepControl]="form">
-                    <form [formGroup]="form">
-                        <ng-template matStepLabel>Twitter Username</ng-template>
-                        <mat-form-field>
-                            <input matInput placeholder="Twitter Username" formControlName="twitterUsername" required>
-                        </mat-form-field>
-                        <div>
-                            <button mat-button matStepperNext>Next</button>
-                        </div>
-                    </form>
-                </mat-step>
-                <mat-step [stepControl]="form">
-                    <form [formGroup]="form">
-                        <ng-template matStepLabel>Personal Info</ng-template>
-                        <mat-form-field>
-                            <input matInput placeholder="Email" formControlName="email" required>
-                        </mat-form-field>
-                        <mat-form-field>
-                            <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
-                        </mat-form-field>
-                        <mat-checkbox labelPosition="before">Would you like to recieve promotional emails</mat-checkbox>
-                        <div>
-                            <button mat-button matStepperNext>Next</button>
-                        </div>
-                    </form>
-                </mat-step>
-                <mat-step [stepControl]="form">
-                    <form [formGroup]="form">
-                        <ng-template matStepLabel>Preferences</ng-template>
-                        <mat-list role="list">
-                            <mat-list-item>
-                                <mat-form-field>
-                                    <input matInput type="number" placeholder="Max Trip Price"
-                                        formControlName="maxPrice" required>
-                                </mat-form-field>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <mat-checkbox labelPosition="before">I have a passport</mat-checkbox>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <mat-checkbox labelPosition="before">I am comfortable flying</mat-checkbox>
-                            </mat-list-item>
-                        </mat-list>
-                        <div>
-                            <button mat-button matStepperNext>Next</button>
-                        </div>
-                    </form>
-                </mat-step>
+  <div *ngIf="!showTrips && !isLoading" fxFlex.gt-sm="40" fxFlex="60" fxFlexOffset.gt-sm="30" fxFlexOffset="20"
+    fxLayout="column">
+    <h2 fxFlex="20" fxFlexOffset="10" fxLayoutAlign="center">Welcome</h2>
+    <mat-card fxFlexOffset="5">
+      <mat-vertical-stepper #stepper>
+        <mat-step [stepControl]="form">
+          <form [formGroup]="form">
+            <ng-template matStepLabel>Twitter Username</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Twitter Username" formControlName="twitterUsername" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="form">
+          <form [formGroup]="form">
+            <ng-template matStepLabel>Personal Info</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" required>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
+            </mat-form-field>
+            <mat-checkbox labelPosition="before">Would you like to receive promotional emails</mat-checkbox>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="form">
+          <form [formGroup]="form">
+            <ng-template matStepLabel>Preferences</ng-template>
+            <mat-list role="list">
+              <mat-list-item>
+                <mat-form-field>
+                  <input matInput type="number" placeholder="Max Trip Price" formControlName="maxPrice" required>
+                </mat-form-field>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-checkbox labelPosition="before">I have a passport</mat-checkbox>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-checkbox labelPosition="before">I am comfortable flying</mat-checkbox>
+              </mat-list-item>
+            </mat-list>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
 
-                <mat-step>
-                    <ng-template matStepLabel>Done</ng-template>
-                </mat-step>
-            </mat-vertical-stepper>
-        </mat-card>
-    </div>
+        <mat-step>
+          <ng-template matStepLabel>
+            <div>
+              <button mat-button (click)="validate()">
+                Done
+              </button>
+            </div>
+          </ng-template>
+        </mat-step>
+      </mat-vertical-stepper>
+    </mat-card>
+  </div>
 
-    <div *ngIf="showTrips" fxLayout="row" fxLayoutGap="20px">
-        <mat-card class="example-card" fxFlex fxFlexOffset="20px">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Shiba Inu</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Shiba Inu</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Shiba Inu</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
+  <div *ngIf="showTrips" fxLayout="row" fxLayoutGap="20px">
+    <mat-card class="example-card" fxFlex fxFlexOffset="20px">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
 
-<mat-card class="middle">
-    <mat-progress-bar mode="query"></mat-progress-bar>
+<mat-card class="middle" *ngIf="isLoading">
+  <mat-progress-bar mode="query"></mat-progress-bar>
 </mat-card>

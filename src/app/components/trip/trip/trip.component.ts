@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-trip',
@@ -10,8 +10,19 @@ export class TripComponent implements OnInit {
 
   form: FormGroup;
 
-  showTrips = true;
+  showTrips = false;
+  isLoading = false;
   constructor(private formBuilder: FormBuilder) { }
+
+  validate() {
+    if (this.form.valid) {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.showTrips = true;
+        this.isLoading = false;
+      }, 3000);
+    }
+  }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
