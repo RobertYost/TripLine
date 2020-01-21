@@ -10,6 +10,7 @@ export class TripComponent implements OnInit {
 
   form: FormGroup;
 
+  showTrips = true;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
