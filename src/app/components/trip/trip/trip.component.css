@@ -18,3 +18,15 @@
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+
+.trip-card{
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  max-width: 70%;
+}
+
+.trip-card-content{
+  margin: 0px !important;
+  padding: 0px !important;
+}

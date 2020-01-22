@@ -10,12 +10,13 @@ export class TripComponent implements OnInit {
 
   form: FormGroup;
 
-  showTrips = true;
+  showTrips = false;
   isLoading = false;
+
 
   trips = [{
     region: 'French Polynesia',
-    expanded: true,
+    expanded: false,
     total_price: '$8,350',
     img: 'assets/frenchpoly.jpg',
     description: 'The last few years have been challenging for you, but also empowering — and you’re ready to make some big changes in 2020. You’ve overcome a lot of obstacles and have a clear vision of what you want. Kicking off the year with a wellness retreat will be just what the doctor ordered.',
@@ -42,7 +43,7 @@ export class TripComponent implements OnInit {
         route: 'Ta Ha\'a - Columbus',
         takeoff_time: '5:43pm',
         landing_time: '12:30pm',
-        price: '$643.75'
+        price: '$648.75'
       }
     ],
     stops: [
@@ -55,7 +56,7 @@ export class TripComponent implements OnInit {
       {
         location: 'Tahiti',
         arrival_date: '02/9/2020',
-        hotel_cost: '$799.0 per night',
+        hotel_cost: '$799.00 per night',
         food_cost: '$199.00 per day'
       },
       {
@@ -95,6 +96,9 @@ export class TripComponent implements OnInit {
     ]
   }
   ];
+  selectedTrip = this.trips[0];
+  showSelectedTrip = false;
+
   constructor(private formBuilder: FormBuilder) { }
 
   validate() {

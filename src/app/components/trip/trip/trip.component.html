@@ -122,13 +122,74 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button (click)="trip.expanded = !trip.expanded">LEARN MORE</button>
+                    <button mat-button (click)="this.selectedTrip = trip; this.showSelectedTrip=true;">LEARN
+                        MORE</button>
                     <button mat-button>SHARE</button>
                 </mat-card-actions>
             </mat-card>
         </div>
     </div>
 </div>
+
+<mat-card *ngIf="showSelectedTrip" class="trip-card">
+    <mat-card-header>
+        <div mat-card-avatar>
+            <mat-icon>airplanemode_active</mat-icon>
+        </div>
+        <mat-card-title>{{selectedTrip.region}}</mat-card-title>
+    </mat-card-header>
+    <!-- <img mat-card-image src="{{selectedTrip.img}}" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+        <h4>Total Cost: {{selectedTrip.total_price}}</h4>
+        <p>
+            {{selectedTrip.description}}
+        </p>
+        <div fxLayout="column">
+            <div>
+                <mat-list>
+                    <mat-list-item>
+                        <mat-icon mat-list-icon>airplanemode_active</mat-icon>
+                        <p mat-line> {{selectedTrip.flights.length}} Flights</p>
+                    </mat-list-item>
+                </mat-list>
+
+                <div fxLayout="row wrap">
+                    <mat-list *ngFor="let flight of selectedTrip.flights">
+                        <mat-list-item >
+                            <mat-icon mat-list-icon>flight_land</mat-icon>
+                            <p mat-line>{{flight.route}}</p>
+                            <p mat-line>Price: {{flight.price}}</p>
+                            <p mat-line>Origin Time: {{flight.takeoff_time}} </p>
+                            <p mat-line>Destination Time: {{flight.landing_time}}</p>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+            <div>
+                <mat-list>
+                    <mat-list-item>
+                        <mat-icon mat-list-icon>hotel</mat-icon>
+                        <p mat-line> {{selectedTrip.stops.length}} Destinations</p>
+                    </mat-list-item>
+                </mat-list>
+                <div fxLayout="row wrap" fxLayoutGap="20px">
+                    <mat-list class="trip-card-content" *ngFor="let stop of selectedTrip.stops">
+                        <mat-list-item >
+                            <mat-icon mat-list-icon>singled_bed</mat-icon>
+                            <h4 mat-line>{{stop.location}}</h4>
+                            <p mat-line> {{stop.arrival_date}} </p>
+                            <p mat-line> Hotel Price {{stop.hotel_cost}} </p>
+                            <p mat-line> Food Price {{stop.food_cost}} </p>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="showSelectedTrip = false;">CLOSE</button>
+    </mat-card-actions>
+</mat-card>
 <!-- 
 <mat-card class="middle">
     <mat-progress-bar mode="query"></mat-progress-bar>
